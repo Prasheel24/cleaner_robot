@@ -43,7 +43,7 @@
 #include "sensor_msgs/LaserScan.h"
 #include "geometry_msgs/Twist.h"
 
-#include "cleanerBot.hpp"
+#include <cleanerBot.hpp>
 
 /**
  *   @brief Constructor of class CleanerBot
@@ -110,13 +110,13 @@ return true;
 void CleanerBot::scanSensorCallback(
       const sensor_msgs::LaserScan::ConstPtr& msgs) {
 //  This is C++ 03 version usage.
-//  for (std::vector<float>::const_iterator it = msgs->ranges.begin(); 
+//  for (std::vector<float>::const_iterator it = msgs->ranges.begin();
 //       it != msgs->ranges.end(); ++it) {
 //     if (*it <= 0.90) {
   for (auto it : msgs->ranges) {
     if (it <= 0.90) {
       setObstacle(true);
-      return;  
+      return;
     }
   }
   setObstacle(false);
@@ -129,7 +129,7 @@ void CleanerBot::scanSensorCallback(
  *   @return none
  */
 void CleanerBot::walkCleaner() {
-  //  initialise the publisher navi 
+  //  initialise the publisher navi
   pub_vel_ = nh_.advertise<geometry_msgs::Twist>
                 ("/cmd_vel_mux/input/navi", 1000);
   //  initialise the subscriber scan
@@ -143,7 +143,7 @@ void CleanerBot::walkCleaner() {
   //  If there is no obstacle, then move ahead.
   while (ros::ok()) {
   if (getObstacle()) {
-    ROS_INFO_STREAM("Obstacle has been detected");    
+    ROS_INFO_STREAM("Obstacle has been detected");
     msgInput_.linear.x = 0.0;
     msgInput_.angular.z = ang_vel_z_;
   } else {

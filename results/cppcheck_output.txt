@@ -1,0 +1,6 @@
+prasheel@prasheelHP:~/GitUploadW12/cleaner_robot$ cppcheck --enable=all --std=c++11 -I /opt/ros/kinetic/include --suppress=missingIncludeSystem $( find . -name *.cpp | grep -vE -e "^./build/" -e "^./vendor/" ) --force --check-config
+Checking src/cleanerBot.cpp...
+1/2 files checked 68% done
+Checking src/main.cpp...
+2/2 files checked 100% done
+

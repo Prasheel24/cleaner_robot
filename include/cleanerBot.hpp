@@ -36,16 +36,15 @@
  *  
  *  Class has members that can be used directly into simulated world.
  */
-#ifndef INCLUDE_CLEANERBOT_HPP
-#define INCLUDE_CLEANERBOT_HPP
+#ifndef INCLUDE_CLEANERBOT_HPP_
+#define INCLUDE_CLEANERBOT_HPP_
 
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
 #include "geometry_msgs/Twist.h"
 
 class CleanerBot {
-public :
-
+ public :
   /**
    *   @brief Constructor of class CleanerBot
    *
@@ -71,7 +70,7 @@ public :
    */
   void scanSensorCallback(
        const sensor_msgs::LaserScan::ConstPtr& msgs);
-  
+
   /**
    *   @brief Main algorithm for the module
    *
@@ -96,7 +95,7 @@ public :
    */
   bool setObstacle(bool obs);
 
-private :
+ private :
 
   bool obstacle_;  //  obstacle flag
   geometry_msgs::Twist msgInput_;  //  Input messages to the turtlebot
@@ -107,5 +106,5 @@ private :
   float ang_vel_z_;  //  angular velocity in the y direction
 };
 
-#endif  //  INCLUDE_CLEANERBOT_HPP
+#endif  //  INCLUDE_CLEANERBOT_HPP_
 

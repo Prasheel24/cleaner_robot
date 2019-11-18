@@ -37,9 +37,9 @@
  *  Program for Autonomous navigation of turtlebot in a simulated world
  *  with obstacle avoidance. 
  */
-#include "cleanerBot.hpp"
+#include <cleanerBot.hpp>
 
-int main (int argc, char** argv) {
+int main(int argc, char** argv) {
 ros::init(argc, argv, "walker");
 //  initialise the Cleaner bot.
 CleanerBot bot;
