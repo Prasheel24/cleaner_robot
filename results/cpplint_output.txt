@@ -1,0 +1,5 @@
+prasheel@prasheelHP:~/GitUploadW12/cleaner_robot$ cpplint $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^./vendor/" -e "^./docs/" -e "^./results" )
+Done processing ./src/main.cpp
+Done processing ./src/cleanerBot.cpp
+Done processing ./include/cleanerBot.hpp
+
