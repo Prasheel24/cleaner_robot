@@ -32,15 +32,14 @@ bool CleanerBot::getObstacle() {
 return obstacle_;
 }
 
-ros::Rate getLoopRate() {
-return 10;
-}
-
 void CleanerBot::scanSensorCallback(
       const sensor_msgs::LaserScan::ConstPtr& msgs) {
-  for (std::vector<float>::const_iterator it = msgs->ranges.begin(); 
-       it != msgs->ranges.end(); ++it) {
-    if (*it <= 0.90) {
+//  This is C++ 03 version usage.
+//  for (std::vector<float>::const_iterator it = msgs->ranges.begin(); 
+//       it != msgs->ranges.end(); ++it) {
+//     if (*it <= 0.90) {
+  for (auto it : msgs->ranges) {
+    if (it <= 0.90) {
       setObstacle(true);
       return;  
     }
@@ -52,7 +51,7 @@ void CleanerBot::walkCleaner() {
   pub_vel_ = nh_.advertise<geometry_msgs::Twist>
                 ("/cmd_vel_mux/input/navi", 1000);
   sub_ = nh_.subscribe<sensor_msgs::LaserScan>("/scan",
-                 300, &CleanerBot::scanSensorCallback, this);
+                 400, &CleanerBot::scanSensorCallback, this);
   ros::Rate loop_rate(10);
 
   while (ros::ok()) {
