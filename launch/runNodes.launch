@@ -1,8 +1,7 @@
-<launch>
-
+<launch>  
+  <arg name="rosbagRecord" default="false" />
   <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
   </include>
-
   <node
     pkg="cleaner_robot"
     type="cleanerBot"
@@ -10,5 +9,11 @@
     output="screen"
     launch-prefix="gnome-terminal --command"
   />
-
+  <node
+    pkg="rosbag"
+    type="record"
+    name="record"
+    args="-a -O $(find cleaner_robot)/results/recording.bag -x /camera/(.*) --duration=30"
+    if="$(arg rosbagRecord)"
+  />
 </launch>
